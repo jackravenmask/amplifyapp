@@ -17,7 +17,7 @@ function App() {
 
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listNotes });
-    //setNotes(apiData.data.listNotes.items);
+    setNotes(apiData.data.listTodos.items);
   }
 
   async function createNote() {
@@ -28,7 +28,6 @@ function App() {
   }
 
   async function deleteNote({ id }) {
-    alert(id)
     const newNotesArray = notes.filter(note => note.id !== id);
     setNotes(newNotesArray);
     await API.graphql({ query: deleteNoteMutation, variables: { input: { id } }});
